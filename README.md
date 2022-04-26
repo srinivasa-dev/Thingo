@@ -1,4 +1,4 @@
-# help_studio
+# thingo
 
 A new Flutter project.
 

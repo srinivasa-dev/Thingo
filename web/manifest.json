@@ -1,6 +1,6 @@
 {
-    "name": "help_studio",
-    "short_name": "help_studio",
+    "name": "thingo",
+    "short_name": "thingo",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
