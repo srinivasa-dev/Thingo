@@ -57,7 +57,7 @@ class _SpyCamState extends State<SpyCam> {
 
       return Future.value(null);
     });
-    WidgetsBinding.instance!.addPostFrameCallback((_) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       await showDialog(
           context: context,
           builder: (cont) {
