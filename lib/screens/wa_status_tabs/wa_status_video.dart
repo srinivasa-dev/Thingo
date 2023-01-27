@@ -71,49 +71,52 @@ class _WaStatusVideoState extends State<WaStatusVideo> {
       child: MasonryGridView.count(
         physics: const BouncingScrollPhysics(),
         padding: const EdgeInsets.symmetric(vertical: 20.0),
-        crossAxisCount: Globals().getOrientation(context) == Orientation.portrait ? 3 : 4,
-        mainAxisSpacing: 8,
-        crossAxisSpacing: 10,
+        crossAxisCount: Globals().getOrientation(context) == Orientation.portrait ? 2 : 4,
+        mainAxisSpacing: 12,
+        crossAxisSpacing: 12,
         itemCount: _videoController.length,
         itemBuilder: (context, index) {
           String videoPath = videoList[index];
           return Material(
             elevation: 8.0,
-            borderRadius: const BorderRadius.all(Radius.circular(8)),
-            child: InkWell(
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => VideoViewer(
-                  vidPath: videoList[index],
-                  vidCont: _videoController[index],
-                )));
-              },
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Hero(
-                    tag: videoPath,
-                    child: AspectRatio(
-                      aspectRatio: _videoController[index].value.aspectRatio,
-                      child: VideoPlayer(
-                          _videoController[index]
+            borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+            child: ClipRRect(
+              borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => VideoViewer(
+                    vidPath: videoList[index],
+                    vidCont: _videoController[index],
+                  )));
+                },
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Hero(
+                      tag: videoPath,
+                      child: AspectRatio(
+                        aspectRatio: _videoController[index].value.aspectRatio,
+                        child: VideoPlayer(
+                            _videoController[index]
+                        ),
                       ),
                     ),
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      color: AppColor.black5,
-                      borderRadius: BorderRadius.circular(100),
+                    Container(
+                      alignment: Alignment.center,
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                        color: AppColor.black5,
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      child: Icon(
+                        Icons.play_arrow,
+                        size: 35,
+                        color: AppColor.white,
+                      ),
                     ),
-                    child: Icon(
-                      Icons.play_arrow,
-                      size: 35,
-                      color: AppColor.white,
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           );
@@ -127,7 +130,7 @@ class _WaStatusVideoState extends State<WaStatusVideo> {
       padding: EdgeInsets.all(20.0),
       child: Center(
         child: Text(
-          "Install WhatsApp to start seeing Statuses!",
+          "No Video Status Found!",
           style: TextStyle(fontSize: 18.0),
           textAlign: TextAlign.center,
         ),

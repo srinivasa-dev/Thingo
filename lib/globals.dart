@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:thingo/widgets/custom_text_button.dart';
 
 
 class Globals {
@@ -12,7 +13,7 @@ class Globals {
     return orientation;
   }
 
-  void downloadStatus(String path) async {
+  void downloadStatus({required String path, required BuildContext context, required bool isImage}) async {
     Directory? directory;
     try {
       if (Platform.isIOS) {
@@ -27,6 +28,25 @@ class Globals {
 
     var file = File(path);
     await file.copy(directory!.path+'/'+path.split('/').last);
+
+    showDialog(
+      context: context,
+      builder: (cont) {
+        return AlertDialog(
+          title: Text('${isImage ? 'Image' : 'Video'} Downloaded!'),
+          content: Text('You can find it in ${directory!.path}'),
+          actions: [
+            CustomTextButton(
+              onPressed: (){
+                Navigator.pop(context);
+              },
+              btnTxt: 'OK',
+              enableBorder: false,
+            )
+          ],
+        );
+      },
+    );
   }
 
   void requestStoragePermission({required void Function() onGranted, required void Function() onDenied}) async {

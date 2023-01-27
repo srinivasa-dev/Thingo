@@ -2,12 +2,10 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:thingo/models/dashboard_model.dart';
-import 'package:thingo/screens/ig_profile_info.dart';
 import 'package:thingo/screens/url_short.dart';
 import 'package:thingo/screens/wa_status.dart';
 import 'package:thingo/screens/wa_text.dart';
 import 'package:thingo/screens/spy_cam.dart';
-import 'package:thingo/service/ig_profile_service.dart';
 import 'package:thingo/service/url_service.dart';
 import 'package:thingo/utils/app_color.dart';
 import 'package:thingo/widgets/custom_grid_view.dart';
@@ -29,6 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        useMaterial3: true,
         brightness: Brightness.light,
         appBarTheme: const AppBarTheme(
           backgroundColor: AppColor.primaryColor,
@@ -36,6 +35,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: AppColor.backgroundLight,
       ),
       darkTheme: ThemeData(
+        useMaterial3: true,
         brightness: Brightness.dark,
         appBarTheme: const AppBarTheme(
           backgroundColor: AppColor.primaryColor,
@@ -45,9 +45,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: MultiRepositoryProvider(
         providers: [
-          RepositoryProvider(
-            create: (context) => IgProfileService(),
-          ),
           RepositoryProvider(
             create: (context) => UrlService(),
           ),
@@ -73,19 +70,19 @@ class _DashBoardState extends State<DashBoard> {
   void initState() {
     _dashboardModelList = [
       DashboardModel(
-        title: 'Send WhatsApp Text',
+        title: 'WhatsApp Direct Chat',
         backgroundColor: AppColor.gridOrange,
         screen: const WaText(),
         animation: 'assets/animations/message.json',
       ),
+      // DashboardModel(
+      //   title: 'View Instagram Profile',
+      //   backgroundColor: AppColor.gridBlue,
+      //   screen: const IgProfileInfo(),
+      //   animation: 'assets/animations/find-person.json',
+      // ),
       DashboardModel(
-        title: 'View Instagram Profile',
-        backgroundColor: AppColor.gridBlue,
-        screen: const IgProfileInfo(),
-        animation: 'assets/animations/find-person.json',
-      ),
-      DashboardModel(
-        title: 'View WhatsApp Statuses',
+        title: 'View WhatsApp Status',
         backgroundColor: AppColor.gridGreen,
         screen: const WaStatus(),
         animation: 'assets/animations/status.json',

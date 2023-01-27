@@ -18,7 +18,7 @@ class PhotoViewer extends StatefulWidget {
 class _PhotoViewerState extends State<PhotoViewer> {
 
   void shareImage() async {
-    Share.shareFiles([widget.imgPath],);
+    Share.shareXFiles([XFile(widget.imgPath)],);
   }
 
   final Globals _globals = Globals();
@@ -37,15 +37,15 @@ class _PhotoViewerState extends State<PhotoViewer> {
         centerTitle: false,
         actions: [
           IconButton(
-            onPressed: (){
-              _globals.downloadStatus(widget.imgPath);
+            onPressed: () {
+              _globals.downloadStatus(path: widget.imgPath, context: context, isImage: true);
             },
             icon: const Icon(
               Icons.file_download,
             ),
           ),
           IconButton(
-            onPressed: (){
+            onPressed: () {
               shareImage();
             },
             icon: const Icon(
@@ -55,8 +55,8 @@ class _PhotoViewerState extends State<PhotoViewer> {
           const SizedBox(width: 10.0,),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
+      body: InteractiveViewer(
+        maxScale: 8.0,
         child: SizedBox.expand(
           child: Center(
             child: Hero(

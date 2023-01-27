@@ -28,6 +28,8 @@ class CustomTextField extends StatefulWidget {
   final bool errorDisplaying;
   final TextCapitalization textCapitalization;
   final Color? fillColor;
+  final int? minLines;
+  final int? maxLines;
 
    const CustomTextField(
       {Key? key,
@@ -64,7 +66,10 @@ class CustomTextField extends StatefulWidget {
         this.scrollPadding = const EdgeInsets.all(20.0),
         this.contentPadding = const EdgeInsets.all(10.0),
         this.textCapitalization = TextCapitalization.none,
-        this.fillColor})
+        this.fillColor,
+        this.minLines,
+        this.maxLines,
+      })
       : super(key: key);
 
   @override
@@ -102,7 +107,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         suffixIcon: widget.suffixIcon,
         prefix: widget.prefix,
         suffix: widget.suffix,
-        errorStyle: TextStyle(),
+        errorStyle: const TextStyle(),
       ),
       textAlign: widget.textAlign,
       autofocus: widget.autofocus,
@@ -117,6 +122,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
       validator: widget.validator,
       scrollPadding: widget.scrollPadding,
       textCapitalization: widget.textCapitalization,
+      minLines: widget.minLines,
+      maxLines: widget.maxLines,
     );
   }
 }

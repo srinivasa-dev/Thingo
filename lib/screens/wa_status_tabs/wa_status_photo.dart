@@ -46,25 +46,28 @@ class _WaStatusPhotoState extends State<WaStatusPhoto> {
       child: imageList.isNotEmpty ? MasonryGridView.count(
         physics: const BouncingScrollPhysics(),
         padding: const EdgeInsets.symmetric(vertical: 20.0),
-        crossAxisCount: Globals().getOrientation(context) == Orientation.portrait ? 3 : 4,
-        mainAxisSpacing: 8,
-        crossAxisSpacing: 10,
+        crossAxisCount: Globals().getOrientation(context) == Orientation.portrait ? 2 : 4,
+        mainAxisSpacing: 12,
+        crossAxisSpacing: 12,
         itemCount: imageList.length,
         itemBuilder: (context, index) {
           String imgPath = imageList[index];
           return Material(
             elevation: 8.0,
-            borderRadius: const BorderRadius.all(Radius.circular(8)),
-            child: InkWell(
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => PhotoViewer(imgPath: imgPath)));
-              },
-              child: Hero(
-                  tag: imgPath,
-                  child: Image.file(
-                    File(imgPath),
-                    fit: BoxFit.cover,
-                  )),
+            borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+            child: ClipRRect(
+              borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => PhotoViewer(imgPath: imgPath)));
+                },
+                child: Hero(
+                    tag: imgPath,
+                    child: Image.file(
+                      File(imgPath),
+                      fit: BoxFit.cover,
+                    )),
+              ),
             ),
           );
         },
@@ -77,7 +80,7 @@ class _WaStatusPhotoState extends State<WaStatusPhoto> {
       padding: EdgeInsets.all(20.0),
       child: Center(
         child: Text(
-          "Install WhatsApp to start seeing Statuses!",
+          "No Photo Status Found!",
           style: TextStyle(fontSize: 18.0),
           textAlign: TextAlign.center,
         ),

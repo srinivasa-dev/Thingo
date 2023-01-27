@@ -76,7 +76,7 @@ class _WaStatusState extends State<WaStatus> {
         padding: EdgeInsets.all(20.0),
       child: Center(
         child: Text(
-          "Install WhatsApp to start seeing Statuses",
+          "Install WhatsApp to start seeing Status",
           style: TextStyle(fontSize: 18.0),
         ),
       ),

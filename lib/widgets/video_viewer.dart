@@ -19,7 +19,7 @@ class VideoViewer extends StatefulWidget {
 class _VideoViewerState extends State<VideoViewer> {
 
   void shareImage() async {
-    Share.shareFiles([widget.vidPath],);
+    Share.shareXFiles([XFile(widget.vidPath)],);
   }
 
   final Globals _globals = Globals();
@@ -44,7 +44,7 @@ class _VideoViewerState extends State<VideoViewer> {
         actions: [
           IconButton(
             onPressed: (){
-              _globals.downloadStatus(widget.vidPath);
+              _globals.downloadStatus(path: widget.vidPath, context: context, isImage: false);
             },
             icon: const Icon(
               Icons.file_download,

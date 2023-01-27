@@ -57,14 +57,14 @@ class _SpyCamState extends State<SpyCam> {
 
       return Future.value(null);
     });
-    WidgetsBinding.instance!.addPostFrameCallback((_) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       await showDialog(
           context: context,
           builder: (cont) {
             return AlertDialog(
               title: const Text('About Spy Cam!'),
               content: const Text('This feature allows you to record while the app is in the background or even when the screen is locked.\n\n'
-                  'Works better when you keep the app open and lock the screen.'),
+                  'Works better when you keep the app open and lock the screen.\n\nUse at your own risk!\nDeveloper will not be held for the misuse of this feature.'),
               actions: [
                 CustomTextButton(
                   onPressed: (){
